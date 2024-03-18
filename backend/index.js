@@ -26,9 +26,10 @@ app.use(cors({
 }));
 
 const authRoutes = require("./routes/authRoutes");
-
 app.use("/auth", authRoutes);
 
+const librarianRoutes = require("./routes/librarianRoutes");
+app.use("/librarian",librarianRoutes);
 
 
 app.all("/*", (req, res) => {
