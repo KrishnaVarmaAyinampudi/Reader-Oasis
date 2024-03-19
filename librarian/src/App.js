@@ -11,9 +11,9 @@ function App() {
   return (
     <>
     <Routes>
-        {/* <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/" element={<Navigate replace to="/login" />} /> */}
+        <Route path="/" element={<Navigate replace to="/login" />} />
         
         {/* SidebarLayout and its child routes */}
         {/* <Route path="/app/:userName" element={<SidebarLayout />}>
