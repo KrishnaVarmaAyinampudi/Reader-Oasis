@@ -1,0 +1,9 @@
+
+.sidebar-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar-layout-content {
+    flex-grow: 1;
+}

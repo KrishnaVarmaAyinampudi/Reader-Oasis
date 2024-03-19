@@ -1,24 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import {  Routes, Route, Navigate } from 'react-router-dom';
+import Login from "./pages/login/login"
+import Signup from "./pages/signup/signup"
+import Home from "./pages/home/home.jsx"
+import AddBooks from './pages/addBooks/addBooks.jsx'
+
+import SidebarLayout from './layout/sidebarLayout.jsx';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={<Navigate replace to="/login" />} />
+        
+        {/* SidebarLayout and its child routes */}
+        {/* <Route path="/app/:userName" element={<SidebarLayout />}>
+          <Route index element={<Home />} />
+          <Route path="add-books" element={<AddBooks />} />
+        </Route> */}
+    </Routes>
+    </>
   );
 }
 
