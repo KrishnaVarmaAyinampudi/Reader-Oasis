@@ -14,7 +14,7 @@ const createLibrarianAccount = async (req, res) => {
         res.status(400).json({ "message": "Internal server error" });
     }
 }
-
+// login
 const librarianLogin = async (req, res) => {
     try{
         const {email,password} = req.body;
