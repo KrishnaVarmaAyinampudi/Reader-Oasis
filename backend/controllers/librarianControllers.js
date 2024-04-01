@@ -20,9 +20,37 @@ const addBook = async (req, res) => {
     }
 }
 
+const fetchAllBooks = async (req, res) => {
+    try {
+        const books = await BookModel.find({}).sort({ publishedDate: -1 });
+        console.log(books);
+        res.status(200).json(books);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
 
+const getBookSuggestions = async (req, res) => {
+    try {
+        console.log(req.query);
+        const { searchQuery } = req.params;
+        const books = await BookModel.find({
+            $or: [
+                { bookName: { $regex: searchQuery, $options: "i" } },
+                { authorName: { $regex: searchQuery, $options: "i" } },
+                // Add more fields to search here if needed
+            ]
+        }).select("bookName");
+        res.status(200).json(books);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: error.message });
+    }
+}
 
 module.exports = {
     addBook,
+    fetchAllBooks,
+    getBookSuggestions
 }
 

@@ -1,0 +1,49 @@
+/* DashboardPage.css */
+.layout {
+    display: flex;
+    /* background-color: #0D051B; */
+    height: 100vh;
+}
+
+
+
+.content {
+    flex-grow: 1;
+}
+
+.home-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+.home-header-right{
+    width: 31%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.header-user {
+    width: 51%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header-user p{
+    font-size:  1rem;
+    padding-left: 1rem;
+}
+
+.book-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem; /* Adjust the gap between cards */
+    padding: 1rem; /* Add some padding around the grid */
+}
+  
+  /* You might want to adjust .book-card max-width here if necessary */
+.book-card {
+    max-width: 100%; /* Ensures the card width is responsive to the grid's column width */
+    /* Other styles remain the same */
+  }
