@@ -1,84 +1,76 @@
-.layout {
-    display: flex;    
-    flex-direction: column;
-    width: 100%;
-    position: relative;
-}
+import React,{useEffect,useState} from 'react';
+import { useParams, Link } from 'react-router-dom';
 
-.bg-img {
-    background-image: url(../../assets/lib.jpg);
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed; 
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    filter: blur(3.2px);
-}
+import { IoNotifications } from "react-icons/io5";
+import { FaRegUser } from "react-icons/fa";
 
-.content {
-    flex-grow: 1;
-}
+import "./Home.css"
+import BookCard from '../../Components/BookCard/BookCard';
+import axios from 'axios';
 
-.home-header {
-    z-index: -9;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #FFFFFF;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    gap: 0px; 
-    border-bottom: 2px solid #4ECCA3;
+
+const Home = () => {
+
+    const { userName } = useParams();
+
+    const [books, setBooks] = useState([]);
+
+    useEffect(() => {
+        const fetchBooks = async () => {
+            try{
+                const res = await axios.get("http://localhost:3002/librarian/fetchAllBooks");
+                setBooks(res.data);
+                console.log(res.data)
+            }catch(error){
+                console.log(error);
+            }
+        }
+        fetchBooks();
+    }, []);
     
 
-}
 
-.home-header h3{
-    padding-left: 100px;
-    margin: 0px;
-    font-size: 1.4rem;
-    margin: auto;
-}
+    return (
+        <div className='layout'>
+        <div className='bg-img'>
+            
+        </div>
+            <div className="content">
+                <div className="home-header">
+                
+                <h3> Lists of Books</h3>
+                    
+                
+                        
+                        <div className='header-user' >
+                        
+                        <FaRegUser 
+                                size={20}
+                            />
+                            <p>{userName}</p>
+                        </div>
+                    
+                </div>
 
-.header-user {
-    display: flex;
-    align-items: center;
-    padding: 0px 60px;
-    justify-content: flex-end;
-}
-
-.header-user p {
-    font-size: 1.1rem;
-    padding-left: 1rem;
-    font-weight: 550;
-}
-
-
-
-
-
-.book-cards-container {
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    padding: 1rem; 
-    padding: 10px 50px;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    
-}
-
-
-
-
-
+                
   
+                <div className="book-cards-container">
+                    {books.map((book) => (
+                        <div className='book-cards'>
+                        <BookCard
+                        id={book._id}
+                            key={book.id}
+                            title={book.bookName}
+                            author={book.authorName}
+                            imageUrl={book.bookImage}
+                        />
+                        
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Home;
