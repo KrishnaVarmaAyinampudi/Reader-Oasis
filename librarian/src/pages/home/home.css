@@ -19,20 +19,20 @@
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 .home-header-right{
-    width: 30%;
+    width: 31%;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 .header-user {
-    width: 50%;
+    width: 51%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .header-user p{
-    font-size: 1rem;
-    padding-left:1rem;
+    font-size:  1rem;
+    padding-left: 1rem;
 }
 
 .book-cards-container {
