@@ -45,7 +45,7 @@ const Home = () => {
                         <div className='header-user' >
                         
                         <FaRegUser 
-                                size={20}
+                                size={21}
                             />
                             <p>{userName}</p>
                         </div>
