@@ -16,6 +16,8 @@ const storage = multer.diskStorage({
 })
 
 
+
+
 const upload = multer({ storage: storage });
 
 //middleware for product images uploading to multer

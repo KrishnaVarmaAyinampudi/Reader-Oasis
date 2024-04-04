@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { createLibrarianAccount } = require("../controllers/authControllers");
+const { createLibrarianAccount,librarianLogin } = require("../controllers/authControllers");
 
 router.post("/create-librarain-account", createLibrarianAccount);
 
