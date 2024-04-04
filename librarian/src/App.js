@@ -16,10 +16,10 @@ function App() {
         <Route path="/" element={<Navigate replace to="/login" />} />
         
         {/* SidebarLayout and its child routes */}
-        {/* <Route path="/app/:userName" element={<SidebarLayout />}>
+        <Route path="/app/:userName" element={<SidebarLayout />}>
           <Route index element={<Home />} />
           <Route path="add-books" element={<AddBooks />} />
-        </Route> */}
+        </Route>
     </Routes>
     </>
   );

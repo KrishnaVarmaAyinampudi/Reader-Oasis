@@ -1,78 +1,50 @@
-import React, { useState } from 'react';
-import './searchbar.css'; 
-import axios from "../../axios/axios"
+import React from 'react';
+import { NavLink,useParams } from 'react-router-dom';
+import './sidebar.css';
 
-const SearchBar = ({ onSearch,onSelectBook ,books}) => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [results, setResults] = useState([]);
-    const [isSearching, setIsSearching] = useState(false);
+import { FaHome } from "react-icons/fa";
+import { PiBooks } from "react-icons/pi";
+import { IoIosLogOut } from "react-icons/io";
+import { LiaNewspaperSolid } from "react-icons/lia";
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        if (onSearch) {
-        onSearch(searchTerm);
-        }
-    };
 
-    const fetchResults = async (query) => {
-        setIsSearching(true);
-        try{
-            const response = await axios.get(`/librarian/getBookSuggestions/${query}`);
-            console.log(response)
-            console.log(response.data)
-            setResults(response.data);
-            setIsSearching(false);
-        }catch(error){
-            console.log(error);
-        }
-    };
+import logo from "../../assets/[removal.ai]_ab348180-27e7-439f-b339-6d4f95342f85-screenshot-2024-03-16-at-3-46-20-am_3QQD13.png"
 
-    const handleInputChange = async (e) => {
-        const value = e.target.value;
-        setSearchTerm(value);
-
-        if (value.length > 1) {
-        await fetchResults(value);
-        } else {
-        setResults([]);
-        }
-    };
-
-    const handleSelectBook = (bookId) => {
-        onSelectBook(bookId); // Pass the selected book's ID to the parent component
-        setResults([]); // Clear search results
-        setSearchTerm(''); // Clear search input
-    };
-
+const Sidebar = () => {
+    const { userName } = useParams();
+    const handleLogout = () => {
+        window.location.href = "/login";
+    }
     return (
-        <div className="search-bar">
-            <form onSubmit={handleSubmit} className='search-bar-form'>
-                <div className='search-bar-container'>
-                    <div className='search-sub-bar-container'>
-                        <input
-                            type="text"
-                            placeholder="Search your favourite books"
-                            value={searchTerm}
-                            onChange={handleInputChange}
-                            className='search-bar-input'
-                        />
-                    </div>
-                    {isSearching && <div className="search-loading">Searching...</div>}
-                    {results.length > 0 && (
-                        <ul className="search-results">
-                            {results.map((result) => (
-                            <li key={result.id} onClick={() => handleSelectBook(result.id)}>
-                                {result.bookName}
-                            </li>
-                            ))}
-                        </ul>
-                    )}
-                </div>
-            </form>
-        </div>
+        <nav className="sidebar">
+            <div className="logo">
+                <img src={logo} alt="logo" />
+            </div>
+            <ul className="nav-links">
+                <li>
+                    <NavLink to={`/app/${userName}`} end className={({ isActive }) => "nav-item" + (isActive ? " active" : "")}>
+                        {/* Your icon for Home */}
+                        <span><FaHome/></span> Home
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to={`/app/${userName}/add-books`} className={({ isActive }) => "nav-item" + (isActive ? " active" : "")}>
+                        {/* Your icon for Add Books */}
+                        <span><PiBooks/></span> Add Books
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to={`/app/${userName}/add-publications`} className={({ isActive }) => "nav-item" + (isActive ? " active" : "")}>
+                        {/* Your icon for Add Books */}
+                        <span><LiaNewspaperSolid/></span> Add Publications
+                    </NavLink>
+                </li>
+            </ul>
+            <div className="logout" onClick={handleLogout}>
+                <IoIosLogOut size={25}/><p className='logout-p' onClick={handleLogout}>Logout</p>
+            </div>
+        </nav>
     );
 };
 
-export default SearchBar;
-
-
+export default Sidebar;
