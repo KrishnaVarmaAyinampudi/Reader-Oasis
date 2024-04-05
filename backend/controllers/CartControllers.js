@@ -20,3 +20,16 @@ async function addToCart(req, res) {
         res.status(500).json({ message: error.message });
     }
 }
+async function getCartItemsByUserId(req, res) {
+    try {
+        const { userId } = req.params;
+        const cart = await Cart.findOne({ userId }).populate('items.bookId');
+        if (!cart) {
+            return res.status(404).json({ message: "Cart not found for the user" });
+        }
+        res.status(200).json({ userId: cart.userId, items: cart.items });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: error.message });
+    }
+}
