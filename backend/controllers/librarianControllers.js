@@ -61,6 +61,20 @@ const getBookById = async (req, res) => {
     }
 };
 
+const deleteBookById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedBook = await BookModel.findByIdAndDelete(id);
+        if (!deletedBook) {
+            return res.status(404).json({ message: "Book not found" });
+        }
+        res.status(200).json({ message: "Book deleted successfully", deletedBook });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: error.message });
+    }
+};
+
 module.exports = {
     addBook,
     fetchAllBooks,
