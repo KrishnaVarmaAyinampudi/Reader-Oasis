@@ -42,3 +42,30 @@ async function addToHistory(req, res) {
     }
 }
 
+async function getHistory(req, res) {
+    try {
+        const { userId } = req.params;
+
+        if (!userId) {
+            return res.status(400).json({ message: "userId is required" });
+        }
+
+        const booksHistory = await History.findOne({ userId });
+
+        if (!booksHistory) {
+            return res.status(404).json({ message: "History not found" });
+        }
+
+        return res.json({ booksHistory });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: error.message });
+    }
+}
+
+module.exports = {
+    addToHistory,
+    getHistory
+};
+ 
+
