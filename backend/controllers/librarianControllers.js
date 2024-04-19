@@ -38,7 +38,7 @@ const getBookSuggestions = async (req, res) => {
             $or: [
                 { bookName: { $regex: searchQuery, $options: "i" } },
                 { authorName: { $regex: searchQuery, $options: "i" } },
-                // Add more fields to search here if needed
+                //Add more fields to search here if needed
             ]
         }).select("bookName");
         res.status(200).json(books);
