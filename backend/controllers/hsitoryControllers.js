@@ -63,6 +63,29 @@ async function getHistory(req, res) {
     }
 }
 
+async function getReserved(req, res) {
+    try {
+        const { userId } = req.params;
+
+        if (!userId) {
+            return res.status(400).json({ message: "userId is required" });
+        }
+
+        const booksReserved = await Reserved.findOne({ userId }).populate("items.bookId");
+
+        if (!booksReserved) {
+            return res.status(200).json({ message: "Reserved not found" });
+        }
+
+        return res.json({ booksReserved });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: error.message });
+    }
+}
+
+
+
 module.exports = {
     addToHistory,
     getHistory
