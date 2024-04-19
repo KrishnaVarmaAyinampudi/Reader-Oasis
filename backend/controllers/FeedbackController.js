@@ -15,7 +15,7 @@ async function sendFeedback(req, res) {
             return res.status(200).json({ message: "Book not found" });
         }
 
-        // Check if the user has already submitted feedback for this book
+        //Check if the user has already submitted feedback for this book
         const hasSubmittedFeedback = existingBook.feedbacksArray.some(entry => entry.userId.toString() === userId);
         if (hasSubmittedFeedback) {
             return res.status(200).json({ alreadySubmitted: "You have already submitted feedback for this book" });
