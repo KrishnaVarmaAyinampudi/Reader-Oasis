@@ -84,6 +84,21 @@ async function getReserved(req, res) {
     }
 }
 
+async function getAllReserved(req, res) {
+    try {
+        const allReserved = await Reserved.find().populate("items.bookId").populate("userId", "-password");
+
+        if (!allReserved) {
+            return res.status(200).json({ noReservedFound: "Reserved not found" });
+        }
+
+        return res.json({ allReserved });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: error.message });
+    }
+}
+
 
 
 module.exports = {
