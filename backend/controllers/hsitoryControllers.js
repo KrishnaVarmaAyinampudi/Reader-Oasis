@@ -99,6 +99,35 @@ async function getAllReserved(req, res) {
     }
 }
 
+async function deleteBookFromReserved(req, res) {
+    try {
+        const { userId, _id } = req.body;
+
+        if(!userId || !_id)
+        {
+            return res.json("userId and _id are required")
+        }
+
+        const reserved = await Reserved.findOne({ userId });
+
+        if (!reserved) {
+            return res.status(200).json({ notFoundReservation: "Reservation not found for the user" });
+        }
+
+        reserved.items = reserved.items.filter(item => item._id.toString() !== _id);
+
+        await reserved.save();
+
+        return res.status(200).json({ deletedFromReserved: "Book removed from reservation successfully" });
+    } 
+    
+    catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: error.message });
+    }
+}
+
+
 
 
 module.exports = {
