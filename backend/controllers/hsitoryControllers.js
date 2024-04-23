@@ -83,7 +83,7 @@ async function getReserved(req, res) {
         res.status(500).json({ message: error.message });
     }
 }
-
+//function for getAllReserved
 async function getAllReserved(req, res) {
     try {
         const allReserved = await Reserved.find().populate("items.bookId").populate("userId", "-password");
