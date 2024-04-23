@@ -21,7 +21,7 @@ async function sendFeedback(req, res) {
             return res.status(200).json({ alreadySubmitted: "You have already submitted feedback for this book" });
         }
 
-        // Add the feedback and rating to the book's feedbacksArray
+        //  Add the feedback and rating to the book's feedbacksArray
         existingBook.feedbacksArray.push({ userId, feedback, rating });
         await existingBook.save();
 
