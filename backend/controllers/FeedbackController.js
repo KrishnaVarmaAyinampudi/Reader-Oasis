@@ -4,7 +4,7 @@ async function sendFeedback(req, res) {
     try {
         const { bookId, userId, feedback, rating } = req.body;
 
-        // Check if all required fields are present
+        //  Check if all required fields are present
         if (!bookId || !userId || !feedback || !rating) {
             return res.status(200).json({ message: "bookId, userId, feedback, and rating are required fields" });
         }
