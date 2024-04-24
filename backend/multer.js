@@ -20,7 +20,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-//middleware for product images uploading to multer
+//middleware for product  images uploading to multer
 const bookUpload = upload.fields([
     { name: 'bookImage', maxCount: 1 }, 
     
