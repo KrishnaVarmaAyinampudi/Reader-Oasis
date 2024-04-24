@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 mongoose.set('strictQuery', true);
 
-
+//addd
 mongoose.connect(process.env.mongodb_url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
