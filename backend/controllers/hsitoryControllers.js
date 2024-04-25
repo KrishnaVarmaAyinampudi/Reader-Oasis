@@ -163,6 +163,40 @@ async function updateReservedBook(req, res) {
     }
 }
 
+async function removeFine(req, res) {
+    try {
+        const { userId } = req.params;
+        const { bookId } = req.body;
+
+        // Fetch the reserved books by userId
+        const reservedBooks = await Reserved.findOne({ userId });
+
+        // If no reserved books found, return a 404 status
+        if (!reservedBooks) {
+            return res.status(200).json({ message: "Reserved books not found" });
+        }
+
+        // Find the book in the reservedBooks.items array
+        const bookIndex = reservedBooks.items.findIndex(item => item.bookId.toString() === bookId);
+
+        // If the book is not found, return a 404 status
+        if (bookIndex === -1) {
+            return res.status(200).json({ message: "Book not found in reserved books" });
+        }
+
+        // Remove the fine for the found book
+        reservedBooks.items[bookIndex].fine = "";
+
+        // Save the updated reservedBooks
+        await reservedBooks.save();
+
+        return res.status(200).json({ fineRemoved: "Fine removed successfully", reservedBooks });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: error.message });
+    }  
+}
+
 
 
 
