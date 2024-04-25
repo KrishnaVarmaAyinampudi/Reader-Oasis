@@ -40,3 +40,24 @@ async function addToSubmit(req, res) {
         res.status(500).json({ message: error.message });
     }
 }
+
+async function getSubmissionsByUserId(req, res) {
+    try {
+        const { userId } = req.params;
+
+        if (!userId) {
+            return res.status(400).json({ message: "userId is required" });
+        }
+
+        const submissions = await Submission.findOne({ userId });
+
+        if (!submissions) {
+            return res.status(200).json({ message: "Submissions not found for the user" });
+        }
+
+        return res.json({ submissions });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+}
