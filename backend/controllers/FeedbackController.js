@@ -1,5 +1,6 @@
 const BookModel = require("../models/books");
 
+//function for feedback request and response
 async function sendFeedback(req, res) {
     try {
         const { bookId, userId, feedback, rating } = req.body;
