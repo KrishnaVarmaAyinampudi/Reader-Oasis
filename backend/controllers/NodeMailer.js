@@ -14,7 +14,6 @@ const checkReserved = async (req, res) => {
   try {
     // Get the current date in UTC for date comparison
     const currentDate = moment.utc().format("YYYY-MM-DD");
-
     // Fetch all reserved books
     const response = await axios.get("http://localhost:3002/reserved/all-reserved-books");
 

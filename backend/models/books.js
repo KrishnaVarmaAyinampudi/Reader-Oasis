@@ -38,7 +38,6 @@ const bookSchema = new mongoose.Schema({
             type: Date
         }
     }],
-
     feedbacksArray: [{
         userId: { 
             type: mongoose.Schema.Types.ObjectId,
