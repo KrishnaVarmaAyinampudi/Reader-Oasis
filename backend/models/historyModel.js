@@ -1,42 +1,32 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
-
-const HistorySchema = mongoose.Schema({
+const ReservedSchema = mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "user", 
-        required: true
+        ref: "user"
     },
+    
     items: [{
         bookId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Books",
             required: true
         },
-        bookName: {
-            type: String,
-            required: true
-        },
-        authorName: {
-            type: String,
-            required: true
-        },
-        isbnNumber: {
-            type: String,
-            required: true
-        },
-        publishedDate: {
+        fine : {
             type: String
         },
-        bookImage: {
-            type: String,
-            required: true
+        createdDate: {
+            type: Date,
+            default: Date.now
         },
-        description: {
-            type: String,
-            required: true
+        willUseBy : {
+            type: Date
+        },
+         
+        submitStatus : { 
+            type:String
         }
     }]
-}, { timestamps: true })
+}, { timestamps: true });
 
-module.exports = mongoose.model("Histories", HistorySchema)
+module.exports = mongoose.model("Reserveds", ReservedSchema);

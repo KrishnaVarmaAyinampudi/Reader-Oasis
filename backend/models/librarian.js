@@ -2,19 +2,19 @@ const mongoose = require("mongoose");
 
 const librarianSchema = new mongoose.Schema({
     name: {
-        type: String,
+        type: String, 
         required: true,
-        trim: true
+        trim:true
     },
     email: {
         type: String,
-        unique: true,
+        unique:true,
         required: true
     },
     password: {
         type: String,
         required: true
     },
-})
+},{ timestamps: true })
 
-module.exports = mongoose.model("librarian", librarianSchema);
+module.exports = mongoose.model("librarian",librarianSchema);

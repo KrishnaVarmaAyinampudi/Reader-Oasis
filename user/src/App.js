@@ -7,7 +7,10 @@ import Home from './Pages/Home/Home';
 import SideBarLayout from './Layout/SideBarLayout/SideBarLayout';
 import Cart from './Pages/Cart/Cart';
 import SingleBook from './Pages/SingleBook/SingleBook';
-import History from './Pages/History/History';
+import ReservedBooks from './Pages/ReservedBooks/ReservedBooks';
+import SubmittedBooks from './Pages/SubmittedBooks/SubmittedBooks';
+import AddPublication from './Pages/AddPublication/AddPublication';
+
 
 
 
@@ -26,8 +29,9 @@ function App() {
           
           <Route path="book/:id" element={<SingleBook/>} />
           <Route path='books-cart' element={<Cart/>} />
-          <Route path='books-history' element={<History/>} />
-        
+          <Route path='reserved-history' element={<ReservedBooks/>} />
+          <Route path='submitted-history' element={<SubmittedBooks/>} />
+          <Route path='publication' element={<AddPublication/>} />
         </Route>
 
       </Routes>
