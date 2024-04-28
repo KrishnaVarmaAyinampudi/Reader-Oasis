@@ -56,8 +56,6 @@ const checkReserved = async (req, res) => {
   }
 };
 
-
-
 const sendEmail = async (req, res) => {
   try {
     // Fetch the reservations for today from the check-reservation endpoint
