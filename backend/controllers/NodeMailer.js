@@ -5,7 +5,7 @@ const cron = require("node-cron");
 const mongoose = require("mongoose");
 
 const EmailsSentSchema = require("../models/NodeMailerModel")
-const Reserved = require("../models/HistoryModel");
+const Reserved = require("../models/historyModel");
 const moment = require("moment"); // For date comparison
 const axios = require("axios");
 dotenv.config();
