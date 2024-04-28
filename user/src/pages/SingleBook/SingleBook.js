@@ -7,7 +7,6 @@ import Loader from '../../Components/Loader/Loader';
 import PopUp from '../../Components/Popups/Popup';
 import Feedbacks from "../../Components/Feedbacks/Feedbacks"
 
-
 const SingleBook = ({ cart, setCart }) => {
   const { id } = useParams();
   const [book, setBook] = useState(null);

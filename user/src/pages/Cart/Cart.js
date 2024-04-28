@@ -13,7 +13,6 @@ const Cart = () => {
   const [popUpText, setPopUpText] = useState("");
   const [willUseByMap, setWillUseByMap] = useState({});
   const [reservedBooks, setReservedBooks] = useState([]); // State to store reserved books
-
   // Function to fetch cart items
   async function fetchCartItems() {
     try {
