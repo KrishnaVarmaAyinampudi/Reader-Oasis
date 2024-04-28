@@ -1,5 +1,5 @@
 const { default: axios } = require("axios");
-const Reserved = require("../models/HistoryModel");
+const Reserved = require("../models/historyModel");
 const Book = require("../models/books")
 
 
