@@ -7,7 +7,7 @@ mongoose.connect(process.env.mongodb_url, {
     useUnifiedTopology: true,
 });
 
-const db = mongoose.connection;
+const db=mongoose.connection;
 
-db.on("error", (error) => console.log(error));
-db.once("open", () => console.log("connected to database"));
+db.on("error",(error)=> console.log(error));
+db.once("open",()=>console.log("connected to database"));

@@ -3,43 +3,55 @@ const mongoose = require("mongoose");
 const bookSchema = new mongoose.Schema({
     bookName: {
         type: String,
-        required: true,
-        unique: true,
-        index: true
+        required: true
     },
     authorName: {
         type: String,
-        required: true,
-        index: true
+        required: true
     },
     isbnNumber: {
         type: String,
-        required: true,
-        unique: true,
-        index: true
+        required: true
     },
     publishedDate: {
-        type: Date,
+        type: String,
         required: true
     },
     bookImage: {
         type: String,
         required: true
     },
-    publishedDate: {
-        type: Date,
-        required: true
-    },
     description:{
         type: String,
         required: true
     },
-    feedback:[
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Feedback"
+    numberOfCopies :{
+        type: Number,
+        required: true
+    },
+    fine : {
+        type: String, 
+        required: true
+    },
+    useByDatesArray: [{
+        willUseBy : {
+            type: Date
         }
-    ]
-},{ timestamps: true })
+    }],
+
+    feedbacksArray: [{
+        userId: { 
+            type: mongoose.Schema.Types.ObjectId,
+            ref : "user"
+        },
+        rating : {
+            type : Number
+        },
+        feedback: {
+            type: String,
+            required: true
+        } 
+    }]
+},{ timestamps: true });
 
 module.exports = mongoose.model("Books", bookSchema);

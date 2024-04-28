@@ -1,5 +1,5 @@
-import React,{useState} from 'react';
-import {Link,useNavigate} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import libraryImage from '../../assets/library-image.png';
 import axios from 'axios';
 import "./Login.css"
@@ -8,7 +8,7 @@ import "./Login.css"
 import PopUp from '../../Components/Popups/Popup';
 import Loader from '../../Components/Loader/Loader';
 
-//login function 
+
 const LoginPage = () => {
 
     const navigate = useNavigate();
@@ -19,22 +19,19 @@ const LoginPage = () => {
     async function handleLogin(e) {
         e.preventDefault();
         console.log(email, password);
-        try
-        {
+        try {
             setLoading(true);
-            const response = await axios.post('http://localhost:3002/auth/user-login',{email, password });
+            const response = await axios.post('http://localhost:3002/auth/user-login', { email, password });
             console.log(response);
-            navigate(`/app/${response.data.user.name}`)
-        }
-        
-        catch(error)
-        {
+            // Save user ID in local storage
+            localStorage.setItem('userId', response.data.user._id);
+            navigate(`/app/${response.data.user.name}`);
+        } catch (error) {
             console.log(error);
             setLoading(false);
-            if(error?.response?.data?.message){
+            if (error?.response?.data?.message) {
                 setpopUpText(error?.response?.data?.message);
-            }
-            else{
+            } else {
                 setpopUpText("Something Went Wrong")
             }
             setIsPopUpOpen(true);
@@ -67,20 +64,20 @@ const LoginPage = () => {
             <div className='login-form-container'>
                 <h2>Login</h2>
                 <form className="login-form">
-                    <input 
-                        type="email" 
-                        placeholder="Email" 
-                        required 
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        />
-                    <input 
-                        type="password" 
-                        placeholder="Password" 
-                        required 
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        required
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        />
+                    />
                     <button type="submit" onClick={handleLogin}>Log In</button>
                 </form>
                 <div className="alternate-action">
@@ -93,10 +90,9 @@ const LoginPage = () => {
                 close={() => setIsPopUpOpen(false)}
                 text={popUpText}
             />
-            
+
         </div>
     );
 };
 
 export default LoginPage;
-
