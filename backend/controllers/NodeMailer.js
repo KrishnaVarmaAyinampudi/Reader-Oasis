@@ -23,7 +23,6 @@ const checkReserved = async (req, res) => {
 
     // Get the list of all reservations
     const reservedData = response.data.allReserved;
-
     // Find reservations where at least one item has a "willUseBy" date matching the current date
     const matchingReservations = reservedData
       .map((reservation) => {
