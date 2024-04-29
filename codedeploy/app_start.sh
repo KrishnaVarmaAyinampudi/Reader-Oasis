@@ -2,6 +2,7 @@
 
 # stop all server
 sudo pm2 stop all
+sudo pm2 delete all
 
 # run backend
 cd /home/ubuntu/se-project/backend/ && sudo npm run deploy

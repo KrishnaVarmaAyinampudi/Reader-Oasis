@@ -1,16 +1,6 @@
 import axios from "axios";
 
-let publicIP;
-
-axios.get('http://checkip.amazonaws.com')
-  .then(response => {
-    publicIP = response.data.trim();
-    console.log(`Public IP: ${publicIP}`);
-  })
-  .catch(error => {
-    console.error(`Problem with request: ${error.message}`);
-  });
-  
+const publicIP= '52.54.112.54' // elastic IP of development server
 
 const BASE_URL = `http://${publicIP}:3002`
 
