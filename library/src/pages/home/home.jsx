@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { FaRegUser } from "react-icons/fa";
 
+
+
 import "./home.css"
 import BookCard from '../../components/bookCard/bookCard';
-import axios from 'axios';
+import axios from '../../axios/axios';
 import Loader from '../../components/loader/loader';
 
 const Home = () => {
@@ -17,7 +19,7 @@ const Home = () => {
     const fetchBooks = async () => {
         setLoading(true); 
         try {
-            const res = await axios.get("http://localhost:3002/librarian/fetchAllBooks");
+            const res = await axios.get("librarian/fetchAllBooks");
             setBooks(res.data);
         } catch (error) {
             console.log(error);

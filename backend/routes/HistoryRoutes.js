@@ -15,7 +15,7 @@ router.get("/books-reserved/:userId", getReserved)
 
 
 
-router.get("/all-reserved-books", getAllReserved)
+router.get("/all-reserved-books", getAllReserved) 
 
 
 
@@ -23,18 +23,12 @@ router.get("/all-reserved-books", getAllReserved)
 router.get("/all-reserved-books-by-book-id", getAllReservedToGroupBookId)
 
 
-
+ 
 router.get('/book-id-group/:bookId', getBookIdGroup);
 
 
 
 router.get('/nearest-will-use-by/:bookId', getNearestWillUseBy);
-
-
-
-
-
-
 
  
 

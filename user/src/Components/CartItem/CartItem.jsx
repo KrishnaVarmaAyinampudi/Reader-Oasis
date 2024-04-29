@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../axios/axios';
 
 const CartItem = ({ item, removeFromCart, reserveBook, willUseBy, handleDateChange, reservedBooks }) => {
   const [isOutOfStock, setIsOutOfStock] = useState(false); // State to track if the book is out of stock
@@ -12,11 +12,11 @@ const CartItem = ({ item, removeFromCart, reserveBook, willUseBy, handleDateChan
     const fetchReservationData = async () => {
       try {
         // Fetch reservation count for the current book ID
-        const res = await axios.get(`http://localhost:3002/reserved/book-copies-count/${item.bookId._id}`);
+        const res = await axios.get(`reserved/book-copies-count/${item.bookId._id}`);
         const resCount = res.data.reservedCount;
 
         // Fetch the total number of copies of the book from your backend API
-        const bookResponse = await axios.get(`http://localhost:3002/librarian/getbook/${item.bookId._id}`);
+        const bookResponse = await axios.get(`librarian/getbook/${item.bookId._id}`);
         const numberOfCopies = bookResponse.data.numberOfCopies;
 
         // Check if the reserved count equals the number of copies to determine if the book is out of stock
@@ -28,7 +28,7 @@ const CartItem = ({ item, removeFromCart, reserveBook, willUseBy, handleDateChan
 
 
         const nearestDateRes = await axios.get(
-          `http://localhost:3002/reserved/nearest-will-use-by/${item.bookId._id}`
+          `reserved/nearest-will-use-by/${item.bookId._id}`
         );
         const nearestDate = nearestDateRes.data.nearestWillUseBy;
         
@@ -48,7 +48,7 @@ const CartItem = ({ item, removeFromCart, reserveBook, willUseBy, handleDateChan
   // Function to check if the book is reserved by the user
   const checkReservation = async (bookId) => {
     try {
-      const res = await axios.get(`http://localhost:3002/reserved/books-reserved/${userId}`);
+      const res = await axios.get(`reserved/books-reserved/${userId}`);
       if (res.data.booksReserved && res.data.booksReserved.items) {
         const reservedItems = res.data.booksReserved.items;
         // Check if the book ID exists in the reserved items array

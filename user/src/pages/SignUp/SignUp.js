@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import {Link,useNavigate} from 'react-router-dom';
 import welcomeImage from '../../assets/usher.png';
-import axios from 'axios';
+import axios from '../../axios/axios';
 import "./SignUp.css"
 import Loader from '../../Components/Loader/Loader';
 import PopUp from '../../Components/Popups/Popup';
@@ -35,7 +35,7 @@ const CreateAccountPage = () => {
         e.preventDefault();
         try{  
             setLoading(true);
-            const response = await axios.post('http://localhost:3002/auth/create-user-account',{
+            const response = await axios.post('auth/create-user-account',{
                 email,
                 password,
                 name:fullName,});

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../../axios/axios';
 import Loader from '../../Components/Loader/Loader';
 import BookCard from '../../Components/BookCard/BookCard';
 import "./Home.css"
@@ -16,7 +16,7 @@ const Home = () => {
         const fetchBooks = async () => {
             setLoading(true);
             try {
-                const res = await axios.get("http://localhost:3002/librarian/fetchAllBooks");
+                const res = await axios.get("librarian/fetchAllBooks");
                 setBooks(res.data);
             } catch (error) {
                 console.log(error);

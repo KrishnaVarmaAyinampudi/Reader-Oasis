@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../../axios/axios';
 import Loader from '../../Components/Loader/Loader';
 import { FaStar } from 'react-icons/fa';
 import "./SubmittedBooks.css";
@@ -20,7 +20,7 @@ const SubmittedBooks = () => {
   useEffect(() => {
     const fetchSubmissions = async () => {
       try {
-        const response = await axios.get(`http://localhost:3002/submit/get-submissions/${userId}`);
+        const response = await axios.get(`submit/get-submissions/${userId}`);
         if (response.data?.submissions?.items) {
           setSubmissions(response.data.submissions.items);
           setLoading(false);
@@ -57,7 +57,7 @@ const SubmittedBooks = () => {
         return;
       }
 
-      const response = await axios.post('http://localhost:3002/feedback/send-feedback', {
+      const response = await axios.post('feedback/send-feedback', {
         bookId,
         userId,
         feedback,

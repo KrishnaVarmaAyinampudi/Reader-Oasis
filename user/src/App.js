@@ -17,7 +17,7 @@ import AddPublication from './Pages/AddPublication/AddPublication';
 
 function App() {
   return (
-    <Router> {/* Wrap Routes with BrowserRouter */}
+    <Router> 
       <Routes>
         <Route path='/login' element={<Login/>} />
         <Route path="/signup" element={<SignUp />} />

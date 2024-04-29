@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../../axios/axios';
 import { NavLink, useParams } from 'react-router-dom';
 import './Users.css';
 import Loader from '../../components/loader/loader';
@@ -13,7 +13,7 @@ const ReservedUsers = () => {
   useEffect(() => {
     const fetchReservedUsers = async () => {
       try {
-        const res = await axios.get('http://localhost:3002/reserved/all-reserved-books');
+        const res = await axios.get('reserved/all-reserved-books');
 
         if (Array.isArray(res.data.allReserved)) {
           const users = res.data.allReserved

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../../axios/axios';
 import { FaStar, FaRegStar } from 'react-icons/fa'; // Import star icons
 import "./BookCard.css";
 import stock from "../../assets/Untitled design.png";
@@ -64,7 +64,7 @@ const BookCard = ({ title, imageUrl, id }) => {
   const fetchFeedbacks = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3002/feedback/all-feedbacks/${id}`
+        `feedback/all-feedbacks/${id}`
       );
       setFeedbacks(response.data.feedbacks);
       setLoading(false);
@@ -78,19 +78,19 @@ const BookCard = ({ title, imageUrl, id }) => {
   const fetchReservationData = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:3002/reserved/book-copies-count/${id}`
+        `reserved/book-copies-count/${id}`
       );
       const resCount = res.data.reservedCount;
 
       const bookResponse = await axios.get(
-        `http://localhost:3002/librarian/getbook/${id}`
+        `librarian/getbook/${id}`
       );
       const numberOfCopies = bookResponse.data.numberOfCopies;
 
       setIsOutOfStock(resCount >= numberOfCopies);
 
       const nearestDateRes = await axios.get(
-        `http://localhost:3002/reserved/nearest-will-use-by/${id}`
+        `reserved/nearest-will-use-by/${id}`
       );
       const nearestDate = nearestDateRes.data.nearestWillUseBy;
       setNearestWillUseBy(nearestDate);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../../axios/axios';
 import Loader from '../../Components/Loader/Loader';
 import { useSearchFilter } from '../../hooks/useSearchFilter'; // Import the custom hook
 import BookCard from "../../Components/BookCard/BookCard"
@@ -14,7 +14,7 @@ const SearchFilter = () => {
     const fetchBooks = async () => {
       setLoading(true);
       try {
-        const res = await axios.get("http://localhost:3002/librarian/fetchAllBooks");
+        const res = await axios.get("librarian/fetchAllBooks");
         setBooks(res.data);
       } catch (error) {
         console.log(error);

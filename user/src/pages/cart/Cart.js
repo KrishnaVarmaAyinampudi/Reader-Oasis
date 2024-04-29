@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../../axios/axios';
 import Loader from '../../Components/Loader/Loader';
 import "./Cart.css";
 import PopUp from '../../Components/Popups/Popup';
@@ -14,10 +14,11 @@ const Cart = () => {
   const [willUseByMap, setWillUseByMap] = useState({});
   const [reservedBooks, setReservedBooks] = useState([]); // State to store reserved books
 
+
   // Function to fetch cart items
   async function fetchCartItems() {
     try {
-      const res = await axios.get(`http://localhost:3002/cart/get-cart/${userId}`);
+      const res = await axios.get(`cart/get-cart/${userId}`);
       if (res.data.noCartFound) {
         setPopUpText("You don't have any book in cart !!");
         setIsPopUpOpen(true);
@@ -35,11 +36,13 @@ const Cart = () => {
     fetchCartItems();
   }, [userId]);
 
+
+
   // Function to remove a book from cart
   const removeFromCart = async (bookId) => {
     try {
       setLoading(true);
-      const response = await axios.post('http://localhost:3002/cart/remove-from-cart', { userId, bookId });
+      const response = await axios.post('cart/remove-from-cart', { userId, bookId });
       console.log(response.data);
       setPopUpText("Removed from the cart");
       setIsPopUpOpen(true);
@@ -50,6 +53,8 @@ const Cart = () => {
       setLoading(false);
     }
   };
+
+
 
   // Function to reserve a book
   const reserveBook = async (bookId, fine) => {
@@ -63,7 +68,7 @@ const Cart = () => {
         return;
       }
 
-      const reserveResponse = await axios.post('http://localhost:3002/reserved/add-to-reserved', {
+      const reserveResponse = await axios.post('reserved/add-to-reserved', {
         userId,
         bookId,
         fine,
@@ -100,6 +105,7 @@ const Cart = () => {
     }
   };
 
+
   // Function to handle date change
   const handleDateChange = (event, bookId) => {
     setWillUseByMap(prevState => ({
@@ -108,6 +114,7 @@ const Cart = () => {
     }));
   };
 
+  
   return (
     <div className='cart-container'>
       <div className='cart-img'></div>

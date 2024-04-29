@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "../../axios/axios";
 import "./AddPublication.css";
 import PopUp from "../../Components/Popups/Popup"
 import Loader from "../../Components/Loader/Loader";
@@ -56,7 +56,7 @@ function AddPublication() {
     try {
       setLoading(true); // Start loading state
       await axios.post(
-        `http://localhost:3002/publication/book-publication/${publicationDetails.isbnNumber}`,
+        `publication/book-publication/${publicationDetails.isbnNumber}`,
         formData,
         {
           headers: {

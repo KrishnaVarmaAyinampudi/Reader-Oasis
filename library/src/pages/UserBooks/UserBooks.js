@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../../axios/axios';
 import Loader from '../../components/loader/loader';
 import "./UserBooks.css"; // Adjust the CSS file import accordingly
 import PopUp from '../../components/popups/popup';
@@ -17,7 +17,7 @@ const UserBooks = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const res = await axios.get(`http://localhost:3002/auth/get-user-by-id/${userId}`);
+        const res = await axios.get(`auth/get-user-by-id/${userId}`);
         setUserData(res.data.user.name);
         setLoading(false); // Set loading to false
       } catch (error) {
@@ -30,7 +30,7 @@ const UserBooks = () => {
 
   const fetchUserBooks = async () => {
     try {
-      const res = await axios.get(`http://localhost:3002/reserved/books-reserved/${userId}`);
+      const res = await axios.get(`reserved/books-reserved/${userId}`);
       setUserBooks(res.data.booksReserved.items || []);
       console.log(res.data)
     } catch (error) {
@@ -61,7 +61,7 @@ const UserBooks = () => {
       const book = userBooks.find(item => item._id === bookId);
 
       // Call the endpoint to submit the book
-      const submitResponse = await axios.post('http://localhost:3002/submit/submit-book', {
+      const submitResponse = await axios.post('submit/submit-book', {
         userId,
         bookId: book.bookId._id,
         bookName: book.bookId.bookName, 
@@ -91,7 +91,7 @@ const UserBooks = () => {
       
 
       // Placeholder for deleting the book from the reservation
-      await axios.post('http://localhost:3002/reserved/remove-from-reserved', { userId, _id });
+      await axios.post('reserved/remove-from-reserved', { userId, _id });
 
       fetchUserBooks(); 
       
@@ -111,7 +111,7 @@ const UserBooks = () => {
       setLoading(true);
   
       // Call the endpoint to remove the fine for the specific book
-      const removeFineResponse = await axios.put(`http://localhost:3002/reserved/books-reserved/remove-fine/${userId}`, { bookId });
+      const removeFineResponse = await axios.put(`reserved/books-reserved/remove-fine/${userId}`, { bookId });
   
       // Handle response and display pop-up accordingly
       if (removeFineResponse.data.fineRemoved) {
@@ -183,7 +183,7 @@ const UserBooks = () => {
               <h3>Reserved</h3>
               <h3>Will Use By</h3> 
               <h3>Days</h3>
-              <h3>Fine</h3>
+              <h3>Book Collection</h3>
               <h3>Actions</h3>
             </div>
             <hr className='user-books-hr'/>

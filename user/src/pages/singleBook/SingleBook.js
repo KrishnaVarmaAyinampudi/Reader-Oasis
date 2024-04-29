@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../../axios/axios';
 import { useParams } from 'react-router-dom';
 import "./SingleBook.css";
 import { Typewriter } from 'react-simple-typewriter';
@@ -16,7 +16,7 @@ const SingleBook = ({ cart, setCart }) => {
   useEffect(() => {
     async function getBook() {
       try {
-        const res = await axios.get(`http://localhost:3002/librarian/getbook/${id}`);
+        const res = await axios.get(`librarian/getbook/${id}`);
         setBook(res.data);
         setLoading(false); // Set loading to false after data is fetched
       } catch (error) {
@@ -48,7 +48,7 @@ const SingleBook = ({ cart, setCart }) => {
       if (book && userId) {
         try {
           setLoading(true); // Set loading to true when adding to cart
-          const response = await axios.post('http://localhost:3002/cart/add-to-cart', {
+          const response = await axios.post('cart/add-to-cart', {
             userId: userId,
             bookId: book._id,
             quantity: 1

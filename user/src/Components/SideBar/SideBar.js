@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../../axios/axios';
 import { NavLink, useParams } from 'react-router-dom';
 import "./SideBar.css";
 import { FaHome,FaAlignJustify, FaRegUser, FaBook, FaUser } from "react-icons/fa";
@@ -11,6 +11,8 @@ import { PiBooks } from "react-icons/pi";
 import { CgClose } from "react-icons/cg";
 import { VscFeedback } from "react-icons/vsc";
 import { FiMail } from "react-icons/fi";
+
+
 
 
 const Sidebar = () => {
@@ -32,7 +34,7 @@ const Sidebar = () => {
         const fetchBooks = async () => {
             setLoading(true);
             try {
-                const res = await axios.get("http://localhost:3002/librarian/fetchAllBooks");
+                const res = await axios.get("librarian/fetchAllBooks");
                 setBooks(res.data);
             } catch (error) {
                 console.log(error);
@@ -49,7 +51,7 @@ const Sidebar = () => {
         // Fetch user details by user ID
         const fetchUserData = async () => {
           try {
-            const res = await axios.get(`http://localhost:3002/auth/get-user-by-id/${userId}`);
+            const res = await axios.get(`auth/get-user-by-id/${userId}`);
             setUserData(res.data.user);
             console.log(res.data.user)
           } catch (error) {
@@ -65,7 +67,7 @@ const Sidebar = () => {
 
     async function fetchCartItems() {
         try {
-            const res = await axios.get(`http://localhost:3002/cart/get-cart/${userId}`);
+            const res = await axios.get(`cart/get-cart/${userId}`);
             if (res.data.noCartFound) {
                 // Handle no cart items found
             } else {
@@ -105,9 +107,30 @@ const Sidebar = () => {
             <div className="nav-links">
 
             <h3>
-            <Typewriter />
+            <Typewriter
+                className="typewriter"
+                words={[
+                    'Expand your mind with a good book.',
+                    'Books are the keys to knowledge and wisdom.',
+                    'Explore new worlds through the pages of a book.',
+                    'Discover the power of imagination in every story.',
+                    'A book is a journey waiting to be taken.',
+                    'Get lost in a story and find yourself.',
+                    'Books can change lives, one page at a time.',
+                    'Find solace and inspiration in the pages of a book.',
+                    'Open a book and open your mind to endless possibilities.',
+                    'The best adventures begin with a book in hand.'
+                        ]}
+                loop={5000}
+                cursor
+                cursorStyle='_'
+                typeSpeed={70}
+                deleteSpeed={30}
+                delaySpeed={1000}
+                />
+
        
-      </h3> 
+            </h3> 
 
         <div className='user-div'>
                 <div className="logout" onClick={handleLogout}>

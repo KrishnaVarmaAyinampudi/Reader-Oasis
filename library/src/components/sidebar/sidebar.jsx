@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../../axios/axios';
 import { NavLink, useParams } from 'react-router-dom';
 import "./sidebar.css"
 import { FaHome,FaAlignJustify, FaRegUser, FaUsers, FaBook, FaUser } from "react-icons/fa";
@@ -32,7 +32,7 @@ const Sidebar = () => {
         const fetchBooks = async () => {
             setLoading(true);
             try {
-                const res = await axios.get("http://localhost:3002/librarian/fetchAllBooks");
+                const res = await axios.get("librarian/fetchAllBooks");
                 setBooks(res.data);
             } catch (error) {
                 console.log(error);
@@ -49,7 +49,7 @@ const Sidebar = () => {
         // Fetch user details by user ID
         const fetchUserData = async () => {
           try {
-            const res = await axios.get(`http://localhost:3002/auth/get-librarian-by-id/${librarianId}`);
+            const res = await axios.get(`auth/get-librarian-by-id/${librarianId}`);
             setUserData(res.data.librarian);
             console.log(res.data.librarian)
           } catch (error) {
@@ -90,8 +90,25 @@ const Sidebar = () => {
 
             <h3>
       
-        <Typewriter />
-      </h3>
+                    <Typewriter
+                className="typewriter"
+                words={[
+            'Libraries are portals to different worlds.',
+            'Libraries are the heartbeats of communities.',
+            'A library is a treasure trove of stories waiting to be explored.',
+            'Libraries empower minds and inspire imaginations.',      
+            'In a library, every book is a new adventure.',
+            "A librarian's passion is to connect readers with their next great read."
+            
+                ]}
+                loop={5000}
+                cursor
+                cursorStyle='_'
+                typeSpeed={70}
+                deleteSpeed={30}
+                delaySpeed={1000}
+                />
+            </h3>
 
 <div className='user-div'>
                 <div className="logout" onClick={handleLogout}>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../../axios/axios';
 import PopUp from '../../components/popups/popup';
 import Loader from '../../components/loader/loader';
 import './Publications.css';
@@ -20,7 +20,7 @@ const Publications = () => {
 
   const fetchPublications = async () => {
     try {
-      const res = await axios.get('http://localhost:3002/publication/all-publications');
+      const res = await axios.get('publication/all-publications');
       setPublications(res.data);
     } catch (error) {
       console.error('Error fetching publications:', error);
@@ -75,14 +75,14 @@ const Publications = () => {
       };
 
       const res = await axios.post(
-        "http://localhost:3002/librarian/publish-book-by-user",
+        "librarian/publish-book-by-user",
         approveData
       );
 
       if (res.data.bookAdded) {
         setPopUpText('Publication approved and book added successfully.');
         setIsPopUpOpen(true);
-        const deleteRes = await axios.delete(`http://localhost:3002/publication/remove-publication/${id}`)
+        const deleteRes = await axios.delete(`publication/remove-publication/${id}`)
         fetchPublications()
       }
     } catch (error) {

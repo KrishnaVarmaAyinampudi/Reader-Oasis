@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../../axios/axios';
 import { useParams } from 'react-router-dom';
 import { FaStar, FaRegStar, FaUser } from 'react-icons/fa';
 import Design from './Feedbacks.module.css';
@@ -47,7 +47,7 @@ const Feedbacks = () => {
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
-        const response = await axios.get(`http://localhost:3002/feedback/all-feedbacks/${id}`);
+        const response = await axios.get(`feedback/all-feedbacks/${id}`);
         setFeedbacks(response.data.feedbacks);
       } catch (error) {
         console.error('Error fetching feedbacks:', error);

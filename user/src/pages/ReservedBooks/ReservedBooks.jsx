@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../../axios/axios';
 import Loader from '../../Components/Loader/Loader';
 import PopUp from '../../Components/Popups/Popup';
 import "./ReservedBooks.css";
@@ -52,7 +52,7 @@ const ReservedBooks = () => {
 
   const fetchBooksReserved = async () => {
     try {
-      const res = await axios.get(`http://localhost:3002/reserved/books-reserved/${userId}`);
+      const res = await axios.get(`reserved/books-reserved/${userId}`);
       
       if (res.data.booksReserved) {
         setBooksReserved(res.data.booksReserved);
@@ -80,7 +80,7 @@ const ReservedBooks = () => {
       setLoading(true);
 
       // Update the book in the backend
-      const updateSubmitStatusResponse = await axios.put('http://localhost:3002/reserved/update-reserved-book', { userId, bookId: bookId._id });
+      const updateSubmitStatusResponse = await axios.put('reserved/update-reserved-book', { userId, bookId: bookId._id });
 
       // Handle response and display pop-up accordingly
       if (updateSubmitStatusResponse.data.updatedReservation) {

@@ -12,7 +12,7 @@ const SearchBar = ({ onSearch,onSelectBook ,books}) => {
         if (onSearch) {
         onSearch(searchTerm);
         }
-    };
+    }; 
 
     const fetchResults = async (query) => {
         setIsSearching(true);
