@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import libraryImage from '../../assets/library-image.png';
 import axios from '../../axios/axios';
-import "./Login.css"
+import "./login.css"
 
 
 import PopUp from '../../Components/Popups/Popup';
