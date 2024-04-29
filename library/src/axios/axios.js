@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const publicIP= '52.54.112.54' // elastic IP of development server
+const publicIP = '<public-ip>' // elastic IP of development server
 
 const BASE_URL = `http://${publicIP}:3002`
 

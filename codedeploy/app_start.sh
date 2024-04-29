@@ -4,6 +4,11 @@
 sudo pm2 stop all
 sudo pm2 delete all
 
+## change the ip
+sudo sed -i "s/<public-ip>/$(curl -s http://checkip.amazonaws.com)/g" /home/ubuntu/se-project/library/src/axios/axios.js
+
+sudo sed -i "s/<public-ip>/$(curl -s http://checkip.amazonaws.com)/g" /home/ubuntu/se-project/user/src/axios/axios.js
+
 # run backend
 cd /home/ubuntu/se-project/backend/ && sudo npm run deploy
 # run library
