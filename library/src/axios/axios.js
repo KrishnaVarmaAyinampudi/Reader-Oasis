@@ -4,8 +4,8 @@ let publicIP;
 
 axios.get('http://checkip.amazonaws.com')
   .then(response => {
-    publicIp = response.data.trim();
-    console.log(`Public IP: ${publicIp}`);
+    publicIP = response.data.trim();
+    console.log(`Public IP: ${publicIP}`);
   })
   .catch(error => {
     console.error(`Problem with request: ${error.message}`);
