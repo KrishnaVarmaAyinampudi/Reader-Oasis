@@ -8,7 +8,6 @@ import "./Login.css"
 import PopUp from '../../Components/Popups/Popup';
 import Loader from '../../Components/Loader/Loader';
 
-
 const LoginPage = () => {
 
     const navigate = useNavigate();

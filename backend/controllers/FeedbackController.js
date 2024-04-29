@@ -23,14 +23,11 @@ async function sendFeedback(req, res) {
         if (hasSubmittedFeedback) {
             return res.status(200).json({ alreadySubmitted: "You have already submitted feedback for this book" });
         }
- 
         // Add the feedback and rating to the book's feedbacksArray
         existingBook.feedbacksArray.push({ userId, feedback, rating });
         await existingBook.save();
-
         res.status(200).json({ fbSubmitted: "Feedback submitted successfully" });
     } catch (error) {
-        console.error(error);
         res.status(500).json({ message: "Internal server error" });
     }
 } 

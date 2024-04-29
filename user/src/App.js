@@ -1,16 +1,15 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'; // Import BrowserRouter
 
-import Login from './Pages/Login/Login';
-import SignUp from './Pages/SignUp/SignUp';
-import Home from './Pages/Home/Home';
+import Login from './pages/login/login';
+import SignUp from './pages/SignUp/SignUp';
+import Home from './pages/Home/Home';
 import SideBarLayout from './Layout/SideBarLayout/SideBarLayout';
-import Cart from './Pages/Cart/Cart';
-import SingleBook from './Pages/SingleBook/SingleBook';
-import ReservedBooks from './Pages/ReservedBooks/ReservedBooks';
-import SubmittedBooks from './Pages/SubmittedBooks/SubmittedBooks';
-import AddPublication from './Pages/AddPublication/AddPublication';
-
+import Cart from './pages/Cart/Cart';
+import SingleBook from './pages/SingleBook/SingleBook';
+import ReservedBooks from './pages/ReservedBooks/ReservedBooks';
+import SubmittedBooks from './pages/SubmittedBooks/SubmittedBooks';
+import AddPublication from './pages/AddPublication/AddPublication';
 
 
 
