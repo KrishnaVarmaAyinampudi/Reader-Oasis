@@ -4,7 +4,6 @@ import Loader from '../../Components/Loader/Loader';
 import "./Cart.css";
 import PopUp from '../../Components/Popups/Popup';
 import CartItem from '../../Components/CartItem/CartItem'; // Import CartItem component
-
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,8 +12,6 @@ const Cart = () => {
   const [popUpText, setPopUpText] = useState("");
   const [willUseByMap, setWillUseByMap] = useState({});
   const [reservedBooks, setReservedBooks] = useState([]); // State to store reserved books
-
-
   // Function to fetch cart items
   async function fetchCartItems() {
     try {
