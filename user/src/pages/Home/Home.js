@@ -7,7 +7,6 @@ import Loader from '../../Components/Loader/Loader';
 import BookCard from '../../Components/BookCard/BookCard';
 import "./Home.css"
 
-
 const Home = () => {
     const [books, setBooks] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -26,10 +25,6 @@ const Home = () => {
         };
         fetchBooks();
     }, []);
-
-   
-
-   
 
     return (
         <div className='layout'>
