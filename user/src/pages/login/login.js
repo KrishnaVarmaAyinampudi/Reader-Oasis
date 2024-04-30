@@ -61,7 +61,7 @@ const LoginPage = () => {
                 <img width="200px" src={libraryImage} alt="" />
             </div>
             <div className='login-form-container'>
-                <h2>Please Login!!</h2>
+                <h2>Login</h2>
                 <form className="login-form">
                     <input
                         type="email"
